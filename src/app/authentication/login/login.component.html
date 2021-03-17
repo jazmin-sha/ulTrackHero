@@ -1,0 +1,38 @@
+<div class="login-register" >
+    <!-- style="background-image:url(assets/images/background/login-register.jpg);" -->
+    <div class="login-register-box">
+        <mat-card>
+            <mat-card-content>
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <div class="text-center">
+                        <img alt="homepage" src="assets/images/logo-icon.png">
+                        <h4 class="m-t-0">Admin Login </h4>
+                    </div>
+
+                    <div fxLayout="row wrap">
+                        <!-- col full-->
+                        <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                            <mat-form-field>
+                                <input matInput placeholder="Username" formControlName="admin_username" [(ngModel)]="credentials.admin_username" [formControl]="form.controls['admin_username']">
+                            </mat-form-field>
+                            <small *ngIf="form.controls['admin_username'].hasError('required') && form.controls['admin_username'].touched"  class="text-danger support-text">Username is required.</small>
+                        </div>
+                        <!-- col full-->
+                        <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                            <mat-form-field>
+                                <input matInput type="password" formControlName="admin_password" placeholder="Password" [(ngModel)]="credentials.admin_password" [formControl]="form.controls['admin_password']">
+                            </mat-form-field>
+                            <small *ngIf="form.controls['admin_password'].hasError('required') && form.controls['admin_password'].touched" class="text-danger support-text">Password is required.</small>
+                        </div>
+
+                        <!-- col full-->
+                        <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+                            <button mat-raised-button color="primary"  class="btn-block btn-lg m-t-20 m-b-20" type="submit" [disabled]="!form.valid">Login</button>
+                        </div>
+
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="addForm">
+
+      <!-- <div fxLayout="row wrap" class="align-items-center m-b-15">
+        <div fxFlex.gt-md="25" fxFlex.gt-lg="25" fxFlex="100">
+            <h3 class="m-0"># <span name="id" [(ngModel)]='users.id' ngDefaultControl>
+                    {{users.id}}</span></h3>
+        </div>
+        <div fxFlex.gt-md="75" class="text-right">
+            <a routerLink='/apps/invoice'>
+                <button mat-stroked-button color="warn" class="m-r-10">Cancel</button>
+            </a>
+            <button mat-raised-button color="primary"  [disabled]="addForm.invalid">Save
+                Invoice</button>
+
+        </div>
+    </div> -->
+
+    <hr>
+
+    <div fxLayout="row wrap" class="align-items-center m-t-30 m-b-15">
+      <div fxFlex="100" fxFlex.gt-md="50">
+          <mat-form-field appearance="outline" class="p-r-15 m-r-15">
+              <mat-label>User Name</mat-label>
+              <input matInput placeholder="User Name" name="from" formControlName="user_name" class="form-control" >
+          </mat-form-field>
+      </div>
+
+      <div fxFlex="100" fxFlex.gt-md="50">
+          <mat-form-field appearance="outline" class="p-r-15 m-r-15">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Email" formControlName="user_email" class="form-control"  name="to" >
+          </mat-form-field>
+      </div>
+
+      <div fxFlex="100" fxFlex.gt-md="50">
+          <mat-form-field appearance="outline" class="p-r-15">
+              <mat-label>Password</mat-label>
+              <input matInput placeholder="Enter To Address" type="password" formControlName="password" class="form-control" name="toAddress"
+                  >
+          </mat-form-field>
+      </div>
+  </div>
+  <div class="text-right m-t-30">
+    <a routerLink='/apps/user_list'>
+      <button mat-stroked-button color="warn" class="m-r-10">Cancel</button>
+  </a>
+    <button color="accent" mat-raised-button (click)="onAddRow()" [disabled]="addForm.invalid"
+        >Add row</button>
+
+  </div>
+
+    </form>
+  </mat-card-content>
+</mat-card>

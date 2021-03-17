@@ -1,0 +1,43 @@
+<div fxLayout="row wrap">
+    <div fxFlex="100">
+        <mat-card>
+            <mat-card-content>
+              <div  *ngIf="currentUser" fxLayout="row wrap" class="align-items-center">
+                <div fxFlex.gt-md="25" fxFlex.gt-lg="25" fxFlex="100" class="text-left">
+                    <h3 > <small>User name:</small> <b> {{currentUser.username}} </b> </h3>
+                    <!-- <mat-form-field>
+                        <input matInput placeholder="Search Users Here">
+                    </mat-form-field> -->
+                </div>
+                <div *ngIf="currentUser" fxFlex.gt-md="75" class="text-right">
+
+                    <a routerLink='/admin/getOneDataOfUser/{{currentUser._id}}'>
+                        <button mat-raised-button color="primary"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                    </a>
+                </div>
+            </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+  </div>
+
+  <!-- <div  *ngIf="currentUser">
+    <agm-map [latitude]="currentUser.locations.latitude" [longitude]="currentUser.locations.longitude"  >
+        <agm-marker [latitude]="currentUser.locations.latitude" [longitude]="currentUser.locations.longitude" ></agm-marker>
+    </agm-map>
+</div> -->
+
+
+  <div fxLayout="row wrap">
+    <div fxFlex="100">
+        <mat-card *ngIf="currentUser">
+            <mat-card-content>
+                <agm-map [zoom]="zoom" >
+                    <agm-marker *ngFor="let item of currentUser.locations"  [latitude]="item.latitude" [longitude]="item.longitude" ></agm-marker>
+                </agm-map>
+            </mat-card-content>
+        </mat-card>
+    </div>
+  </div>
+
+<!-- [mapTypeId]='googleMapType' -->

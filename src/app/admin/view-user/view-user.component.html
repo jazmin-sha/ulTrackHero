@@ -1,0 +1,124 @@
+<div fxLayout="row wrap">
+  <div fxFlex="100">
+      <mat-card>
+          <mat-card-content>
+            <div  *ngIf="currentUser" fxLayout="row wrap" class="align-items-center">
+              <div fxFlex.gt-md="25" fxFlex.gt-lg="25" fxFlex="100" class="text-left">
+                  <h3 > <small>User name:</small> <b> {{currentUser.username}} </b> </h3>
+                  <!-- <mat-form-field>
+                      <input matInput placeholder="Search Users Here">
+                  </mat-form-field> -->
+              </div>
+              <div fxFlex.gt-md="75" class="text-right">
+                <a *ngIf="currentUser" class="p-1" >
+                  <button mat-raised-button class="btn btn-warning " color="danger"  [routerLink]="['/admin/userMap/', currentUser._id]"><i class="fa fa-map-marker" aria-hidden="true"></i></button>
+              </a>
+                <a class="p-1">
+                  <button mat-raised-button class="btn btn-success" color="danger"  data-toggle="modal" (click)="open(content)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+              </a>
+                <a class="p-1">
+                  <button mat-raised-button class="btn btn-danger" (click)="deleteUser()" color="danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+              </a>
+                  <a class="p-1" routerLink='/admin/getAllUserData'>
+                      <button mat-raised-button class="btn btn-primary" color="primary"><i class="fa fa-arrow-left" aria-hidden="true"></i>
+                      </button>
+                  </a>
+              </div>
+          </div>
+          </mat-card-content>
+      </mat-card>
+  </div>
+</div>
+<!-- (keyup)="filter($event.target.value)" -->
+<!-- <div fxLayout="row wrap">
+  <div fxFlex="100">
+    <mat-card>
+      <mat-card-content>
+        <div class="table-responsive">
+    <div class="mat-elevation-z8" *ngIf="currentUser" >
+      <table #table mat-table *ngFor="let item of currentUser.locations"  class="table employee-list no-wrap" [dataSource]="dataSource">
+
+        <ng-container matColumnDef="Date andTime">
+          <th mat-header-cell *matHeaderCellDef>User Id </th>
+          <td style="width: 400px;" mat-cell *matCellDef="let element"> {{element.date}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Longitude">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td style="width: 400px;" mat-cell *matCellDef="let element"> {{element.latitude}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Latitude">
+          <th mat-header-cell *matHeaderCellDef> Activity </th>
+          <td style="width: 400px;" mat-cell *matCellDef="let element"> {{element.longitude}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Activity">
+          <th mat-header-cell *matHeaderCellDef> Locations </th>
+          <td style="width: 400px;" mat-cell *matCellDef="let element"> {{element.activity}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+  </mat-card-content>
+</mat-card>
+</div>
+</div> -->
+
+<div fxLayout="row wrap">
+  <div fxFlex="100">
+      <mat-card>
+          <mat-card-content>
+            <div fxLayout="row wrap" class="align-items-center" style="overflow-x:auto;">
+            <table class="table table-striped ">
+              <thead>
+                <tr class="p-5">
+                  <th scope="col">Date and Time</th>
+                  <th scope="col">Latitude</th>
+                  <th scope="col">Longitude</th>
+                  <th scope="col">Activity</th>
+                </tr>
+              </thead>
+              <tbody *ngIf="currentUser">
+                <tr  class="p-4" *ngFor="let item of currentUser.locations" >
+                  <td scope="row"> {{item.date}} </td>
+                  <td> {{item.latitude}} </td>
+                  <td>  {{item.longitude}}  </td>
+                  <td>  {{item.activity}}  </td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+          </mat-card-content>
+      </mat-card>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+<form (ngSubmit)="updateUser()">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Update User</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="Username">Username</label>
+        <div class="input-group">
+          <input id="Username" type="text" [(ngModel)]="currentUser.username" class="form-control" placeholder="edit username" name="dp" ngbDatepicker>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-outline-dark" data-dismiss="content"  (click)="modal.dismiss('Cross click')">Save</button>
+  </div>
+</form>
+  </ng-template>
